@@ -1,4 +1,58 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="errorMessage !==''">
+      <strong>Error Occurded!</strong> {{errorMessage}}
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
 
-<h1>TEST ME With new font</h1>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="isSuccess | async">
+        <strong>Great!</strong> Generated Password Successfully.
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+    </div>
 
-<h1>Test with fontawesome <i class="fa fa-glass"></i></h1>
+
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-3"></div>
+    <div class="col-12 col-md-6">
+      <!-- PASSWORD GENERATOR -->
+      <h1 class="text-uppercase">Password generator</h1>
+
+      <div>
+        <span class="me-2 text-capitalize">Enter Length</span>
+        <input type="number" [(ngModel)]="passwordLength" />
+      </div>
+
+      <div>
+        <span class="me-2 text-capitalize">Use Letters</span>
+        <input type="checkbox" [(ngModel)]="isUseLetters" />
+      </div>
+      <div>
+        <span class="me-2 text-capitalize">Use Numbers</span>
+        <input type="checkbox" [(ngModel)]="isUseNumbers" />
+      </div>
+      <div>
+        <span class="me-2 text-capitalize">Use Symbols</span>
+        <input type="checkbox" [(ngModel)]="isUseSymbols" />
+      </div>
+      <div>
+        <button class="btn btn-primary text-capitalize" (click)="generate()" [disabled]="(isSuccess | async)">Generate!</button>
+      </div>
+      <div *ngIf="passwordResult !=''">
+        <span class="me-2 text-capitalize">your password</span>
+        <input [value]="passwordResult" />
+      </div>
+    </div>
+    <div class="col-12 col-md-3"></div>
+  </div>
+</div>
